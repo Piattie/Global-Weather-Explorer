@@ -22,20 +22,23 @@ document.addEventListener('DOMContentLoaded', function() {
     function getWeather(city) {
         const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
         const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
-
+    
         // Fetch current weather
         fetch(weatherUrl)
             .then(response => response.json())
             .then(data => {
                 displayCurrentWeather(data);
+                document.getElementById('weather-display').style.display = 'block'; // Show the weather display section
                 addToSearchHistory(city);
             });
-
+    
         // Fetch 5-day forecast
         fetch(forecastUrl)
             .then(response => response.json())
             .then(data => {
                 displayForecast(data);
+                document.getElementById('forecast').style.display = 'block'; // Show the weather display section
+
             });
     }
 
@@ -70,22 +73,22 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('weatherSearchHistory', JSON.stringify([]));
         }
         let searchHistory = JSON.parse(localStorage.getItem('weatherSearchHistory'));
-        if (!searchHistory.includes(city)) {
-            searchHistory.unshift(city);
-            localStorage.setItem('weatherSearchHistory', JSON.stringify(searchHistory));
-            loadSearchHistory();
-        }
+    if (!searchHistory.includes(city)) {
+        searchHistory.unshift(city); 
+        localStorage.setItem('weatherSearchHistory', JSON.stringify(searchHistory));
+        loadSearchHistory();
     }
+}
 
-    function loadSearchHistory() {
-        let searchHistory = JSON.parse(localStorage.getItem('weatherSearchHistory')) || [];
-        searchHistoryList.innerHTML = '';
-        searchHistory.forEach(city => {
-            const cityButton = document.createElement('button');
-            cityButton.textContent = city;
-            cityButton.classList.add('city-icon');
-            cityButton.onclick = () => getWeather(city);
-            searchHistoryList.appendChild(cityButton);
-        });
-    }
+function loadSearchHistory() {
+    let searchHistory = JSON.parse(localStorage.getItem('weatherSearchHistory')) || [];
+    const searchHistoryDiv = document.getElementById('search-history');
+    searchHistoryDiv.innerHTML = '';
+    searchHistory.forEach(city => {
+        const cityButton = document.createElement('button');
+        cityButton.textContent = city;
+        cityButton.addEventListener('click', () => getWeather(city));
+        searchHistoryDiv.appendChild(cityButton);
+    });
+}
 });
