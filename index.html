@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard</title>
+    <title>Global Weather Explorer</title>
     <link rel="stylesheet" href="./Assets/2. CSS/styles.css">
 </head>
 <body>
 
-    <header>Weather Dashboard</header>
+    <header>Global Weather Explorer</header>
 
-    <div class="container">
-        <aside class="sidebar">
-            <div class="search-container">
-                <form id="city-search-form">
-                    <input type="text" id="city-input" placeholder="Enter city name" required>
-                    <button type="submit">Search</button>
-                </form>
-                <ul id="search-history">
-                    <!-- Searched cities will be listed here -->
-                </ul>
-            </div>
-        </aside>
+    <section class="search-container">
+        <form id="city-search-form">
+            <input type="text" id="city-input" placeholder="Search...">
+            <button type="submit">Search</button>
+            <button id="clear-history-button">Clear History</button>
+        </form>
+        <ul id="search-history">
+            <!-- Searched cities will be listed here -->
+        </ul>
+    </section>
 
-        <main class="main-content">
-            <div id="current-weather">
-                <!-- Current weather will be populated here -->
+    <main class="main-content">
+        <section id="weather-display" style="display: none;">
+            <h2>Today Forecast:</h2>
+                <div id="weather-card">
+                    <!-- Current weather will be populated here -->
+                 </div>
+        </section>
+        <section id="forecast" style="display: none;">
+            <h3>5-Day Forecast:</h3>
+            <div id="forecast-cards">
+                <!-- 5-day forecast will be populated here -->
             </div>
-            <div id="forecast">
-                <h3>5-Day Forecast:</h3>
-                <div id="forecast-cards">
-                    <!-- 5-day forecast will be populated here -->
-                </div>
-            </div>
-        </main>
-    </div>
+        </section>
+    </main>
 
     <script src="./Assets/3. JS/Script.js"></script>
 

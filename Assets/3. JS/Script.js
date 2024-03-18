@@ -1,27 +1,34 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const searchForm = document.getElementById('city-search-form');
-    const cityInput = document.getElementById('city-input');
-    const searchHistoryList = document.getElementById('search-history');
-    const currentWeatherDiv = document.getElementById('current-weather');
-    const forecastCardsDiv = document.getElementById('forecast-cards');
+    var searchForm = document.getElementById('city-search-form');
+    var cityInput = document.getElementById('city-input');
+    var searchHistoryList = document.getElementById('search-history');
+    var clearHistoryButton = document.getElementById('clear-history-button');
+    var currentWeather = document.getElementById('weather-card');
+    var forecastCards = document.getElementById('forecast-cards');
 
-    const apiKey = 'a9dabeff0f819ad6fd3a5db138545d52'; // Your OpenWeatherMap API key
+    var apiKey = 'a9dabeff0f819ad6fd3a5db138545d52'; // Your OpenWeatherMap API key
 
     // Load search history from localStorage
     loadSearchHistory();
 
     searchForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        const city = cityInput.value.trim();
+        var city = cityInput.value.trim();
         if (city) {
             getWeather(city);
             cityInput.value = ''; // Clear the input field
         }
     });
 
+    // Clear History Button
+clearHistoryButton.addEventListener('click', function() {
+    localStorage.clear(); // Clears all local storage
+    loadSearchHistory(); // Reloads the search history
+});
+
     function getWeather(city) {
-        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
-        const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
+        var weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+        var forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
     
         // Fetch current weather
         fetch(weatherUrl)
@@ -43,16 +50,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function displayCurrentWeather(data) {
-        currentWeatherDiv.innerHTML = `
-            <h2>${data.name} (${new Date().toLocaleDateString()})</h2>
-            <p><strong>Temp:</strong> ${data.main.temp.toFixed(2)}°F</p>
-            <p><strong>Wind:</strong> ${data.wind.speed} MPH</p>
-            <p><strong>Humidity:</strong> ${data.main.humidity} %</p>
+        currentWeather.innerHTML = `
+            <div class="weather-card">
+                <h4>Today in ${data.name} </h4>
+                <h4>(${new Date().toLocaleDateString()})</h4>
+                <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="Weather Icon">
+                <p><strong>Temp:</strong> ${data.main.temp.toFixed(2)}°F</p>
+                <p><strong>Wind:</strong> ${data.wind.speed} MPH</p>
+                <p><strong>Humidity:</strong> ${data.main.humidity} %</p>
+            </div>
         `;
     }
 
     function displayForecast(data) {
-        forecastCardsDiv.innerHTML = '';
+        forecastCards.innerHTML = '';
         for (let i = 0; i < data.list.length; i += 8) { 
             const dayData = data.list[i];
             const cardHtml = `
@@ -64,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p><strong>Humidity:</strong> ${dayData.main.humidity} %</p>
                 </div>
             `;
-            forecastCardsDiv.innerHTML += cardHtml;
+            forecastCards.innerHTML += cardHtml;
         }
     }
 

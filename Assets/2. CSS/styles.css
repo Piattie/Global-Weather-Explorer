@@ -1,11 +1,5 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-bbody {
+/* General Styles */
+body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
@@ -15,25 +9,24 @@ bbody {
 }
 
 header {
-    background-color: #4c4c7d; /* or your preferred color */
+    background-color: #4c4c7d;
     color: white;
     padding: 20px;
     text-align: center;
-    font-size: 36px; /* Adjust the size as needed */
-    font-weight: bold; /* Makes the font bolder */
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 45px;
 }
 
-
+/* Layout */
 .container {
     display: flex;
     flex: 1;
-}
-
-.sidebar {
-    width: 25%; /* Adjust width as needed */
-    background-color: #f4f4f4;
-    padding: 20px;
-    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px; /* Increased to accommodate stacked elements */
+    background-color: #f5f5f5;
 }
 
 .main-content {
@@ -43,61 +36,81 @@ header {
 }
 
 /* Search Section */
-#search-section {
-    background-color: white;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 8px;
+.search-container {
+    text-align: center;
 }
 
-#city-search-form input[type='text'] {
-    width: calc(100% - 110px);
+.search-container input[type="text"] {
     padding: 10px;
-    border: 1px solid #ccc;
+    margin-bottom: 8px; /* Added space between input and button */
+    border: 1px solid #ddd;
     border-radius: 4px;
-    margin-right: 5px;
+    width: 80%; /* Adjust width as needed */
+    max-width: 400px; /* Set a max-width for larger screens */
 }
 
-#city-search-form button {
-    width: 100px;
-    background-color: #1a73e8;
-    color: white;
+.search-container button {
+    margin: 2px; /* Adjust the value as needed */
     padding: 10px;
+    max-width: 408px; /* Slightly wider to align edges */
     border: none;
     border-radius: 4px;
+    background-color: #007bff;
+    color: white;
     cursor: pointer;
 }
 
+.search-container button:hover {
+    background-color: #0056b3;
+}
 /* Search History */
 #search-history {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 #search-history li {
-    background-color: #f7f7f7;
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text color */
     padding: 10px;
     margin-bottom: 8px;
-    border-radius: 4px;
+    border-radius: 4px; /* Rounded corners */
     cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
-/* Weather Display */
-#weather-display {
-    display: none;
-    background-color: #ffffff;
-    padding: 20px;
-    margin: 20px;
+#search-history li:hover {
+    background-color: #0056b3; /* Slightly darker blue on hover */
+}
+
+/* Weather and Forecast Display */
+.weather-card, .forecast-card {
+    background-color: darkslateblue;
+    color: whitesmoke;
+    text-align: center;
     border-radius: 8px;
+    padding: 15px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin-bottom: 20px; /* Move margin-bottom to .weather-card and .forecast-card */
 }
 
-/* Current Weather */
-#current-weather {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 20px;
+/* Apply margin-bottom for both .weather-card and .forecast-card inside #current-weather */
+ .weather-card, .forecast-card {
     margin-bottom: 20px;
 }
 
+/* Weather Cards */
+#weather-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(332px, 10px));
+    grid-gap: 20px;
+}
+
+.weather-card img {
+    max-width: 50px;
+    margin-bottom: 8px;
+}
 /* Forecast Cards */
 #forecast-cards {
     display: grid;
@@ -105,89 +118,27 @@ header {
     grid-gap: 20px;
 }
 
-.forecast-card {
-    color: whitesmoke;
-    text-align: center;
-    background-color: darkslateblue;
-    border-radius: 8px;
-    padding: 15px 10px;
-}
-
 .forecast-card img {
     max-width: 50px;
     margin-bottom: 8px;
 }
 
-/* Responsive adjustments */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-    #city-search-form input[type='text'] {
-        width: calc(100% - 120px);
+
+    .main-content {
+        padding: 20px 10px;
     }
 
     #forecast-cards {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
-}
-.city-icon {
-    display: inline-block;
-    margin: 5px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.search-container {
-    text-align: center;
-}
 
-#city-search-form {
-    margin-bottom: 20px;
-}
+    #weather-card {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
 
-#search-history {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: inline-block; /* Aligns the list in the center */
-    text-align: left; /* Aligns list items to the left */
-}
-
-#search-history li {
-    margin-bottom: 10px; /* Adds space between items */
-}
-.search-container {
-    text-align: center;
-    margin: 20px;
-}
-
-#city-search-form, #search-history {
-    display: inline-block;
-    text-align: left;
-    width: 100%; /* Adjust this to change the width of the search box and the history list */
-    max-width: 400px; /* Maximum width */
-    margin: 0 auto; /* This centers the block */
-}
-
-#city-input, #city-search-form button {
-    width: calc(100% - 22px); /* Adjusts the width of input and button, accounting for padding and border */
-    padding: 10px;
-    margin: 5px 0; /* Adds a small space above and below the elements */
-}
-
-#search-history button {
-    display: block;
-    background-color: #f8f8f8;
-    color: #333;
-    padding: 10px;
-    border: none;
-    border-bottom: 1px solid #ddd;
-    cursor: pointer;
-    text-align: left;
-    width: 100%; /* Makes the button extend full width of the container */
-}
-
-#search-history button:hover {
-    background-color: #e0e0e0;
+    #city-search-form input[type='text'] {
+        width: calc(100% - 120px);
+    }
 }
