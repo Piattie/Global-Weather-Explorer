@@ -25,7 +25,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 150px; /* Increased to accommodate stacked elements */
+    height: 150px; 
     background-color: #f5f5f5;
 }
 
@@ -42,17 +42,17 @@ header {
 
 .search-container input[type="text"] {
     padding: 10px;
-    margin-bottom: 8px; /* Added space between input and button */
+    margin-bottom: 8px; 
     border: 1px solid #ddd;
     border-radius: 4px;
-    width: 80%; /* Adjust width as needed */
-    max-width: 400px; /* Set a max-width for larger screens */
+    width: 80%; 
+    max-width: 400px; 
 }
 
 .search-container button {
-    margin: 2px; /* Adjust the value as needed */
+    margin: 2px; 
     padding: 10px;
-    max-width: 408px; /* Slightly wider to align edges */
+    max-width: 408px; 
     border: none;
     border-radius: 4px;
     background-color: #007bff;
@@ -71,17 +71,17 @@ header {
 }
 
 #search-history li {
-    background-color: #007bff; /* Blue background */
-    color: white; /* White text color */
+    background-color: #007bff; 
+    color: white; 
     padding: 10px;
     margin-bottom: 8px;
-    border-radius: 4px; /* Rounded corners */
+    border-radius: 4px; 
     cursor: pointer;
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    transition: background-color 0.3s; /
 }
 
 #search-history li:hover {
-    background-color: #0056b3; /* Slightly darker blue on hover */
+    background-color: #0056b3; 
 }
 
 /* Weather and Forecast Display */
@@ -92,11 +92,10 @@ header {
     border-radius: 8px;
     padding: 15px 10px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    margin-bottom: 20px; /* Move margin-bottom to .weather-card and .forecast-card */
+    margin-bottom: 20px; 
 }
 
-/* Apply margin-bottom for both .weather-card and .forecast-card inside #current-weather */
- .weather-card, .forecast-card {
+.weather-card, .forecast-card {
     margin-bottom: 20px;
 }
 

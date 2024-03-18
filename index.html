@@ -10,7 +10,7 @@
 
     <header>Global Weather Explorer</header>
 
-    <section class="search-container">
+    <searchbar class="search-container">
         <form id="city-search-form">
             <input type="text" id="city-input" placeholder="Search...">
             <button type="submit">Search</button>
@@ -19,7 +19,7 @@
         <ul id="search-history">
             <!-- Searched cities will be listed here -->
         </ul>
-    </section>
+    </searchbar>
 
     <main class="main-content">
         <section id="weather-display" style="display: none;">
@@ -29,7 +29,7 @@
                  </div>
         </section>
         <section id="forecast" style="display: none;">
-            <h3>5-Day Forecast:</h3>
+            <h4>5-Day Forecast:</h4>
             <div id="forecast-cards">
                 <!-- 5-day forecast will be populated here -->
             </div>
